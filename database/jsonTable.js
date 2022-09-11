@@ -2,11 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 let model = function(tableName) {
+    // funcion que recibe el nombre de la tabla como parametro y devuelve un objeto
+    // con metodos para manipular la tabla
     return {
         filePath: path.join(__dirname, '../database/' + tableName + '.json'),
         readFile() {
             let fileContents = fs.readFileSync(this.filePath, 'utf8');
-        
+            // si existe el archivo lo parsea, sino retorna un array vacio
             if(fileContents) {
                 return JSON.parse(fileContents);
             }
